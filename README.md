@@ -1,6 +1,6 @@
 # Vinyl App
 ___
-![Image](https://goo.gl/photos/Um2obhCgb6wKPuPP6)
+![Image](https://goo.gl/photos/2NQADXTHd5V3kfrY9)
 
 ## Description
 ___
