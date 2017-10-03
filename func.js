@@ -85,9 +85,9 @@ $("html").mousemove(function(event) {
 
 function getInfo(search) {
   if (search === undefined) {
-    url = 'https://cors-anywhere.herokuapp.com/http://api.musicgraph.com/api/v2/album/search?api_key=42ae097ae723c841dd4ad0ab46cf1608&limit=100'
+    url = 'https://cors-anywhere.herokuapp.com/http://api.musicgraph.com/api/v2/album/search?api_key=60ce6e8610483227eda119562df65b1b&limit=100'
   } else {
-    url = 'https://cors-anywhere.herokuapp.com/http://api.musicgraph.com/api/v2/album/search?api_key=42ae097ae723c841dd4ad0ab46cf1608&limit=100' + '&genre=' + search
+    url = 'https://cors-anywhere.herokuapp.com/http://api.musicgraph.com/api/v2/album/search?api_key=60ce6e8610483227eda119562df65b1b&limit=100' + '&genre=' + search
   }
 
   $.get(url)
