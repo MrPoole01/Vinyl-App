@@ -104,12 +104,23 @@ nav {
 
 .card__front {
   background-color: #8b8b8b;
+  text-align: center;
+}
+
+.card__front p {
+  color: #ffffff;
+  padding-top: 60px;
 }
 
 .card__back {
   background-color: #1e1e1e;
   -webkit-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
+}
+
+.card__back p {
+  color: #1e1e1e;
+  padding-top: 60px;
 }
 
 .infoContainer {

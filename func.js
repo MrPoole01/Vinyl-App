@@ -1,35 +1,9 @@
-var request = []
-var artistPic = []
-var artistName = []
-var albumRelease = []
-var albumTitle = []
-
-
-var name = $(".artist_name")
-var title = $(".title")
-var year = $(".release_year")
-var genre = $(".main_genre")
-var artist_link = $(".id")
-// console.log(request, artistName, albumRelease, albumTitle);
-
-
-
-// Search function
-var apiSearch = "https://cors-anywhere.herokuapp.com/http://api.musicgraph.com/api/v2/album/search";
-var apiKey1 = "?api_key";
-var keyId = "=42ae097ae723c841dd4ad0ab46cf1608";
-var genre = '&genre=';
-var musicgraph = apiSearch + apiKey1 + keyId + genre
-// console.log(musicgraph);
-
 // Artist Info
 var siteURL = "https://cors-anywhere.herokuapp.com/http://coverartarchive.org/release-group/";
 
 $(document).ready(function() {
 
-  // (function() {
-
-    // cache vars
+    // cache
     var cards = document.querySelectorAll(".card.effect__random");
     var timeMin = 1;
     var timeMax = 3;
@@ -49,7 +23,7 @@ $(document).ready(function() {
       if (id in timeouts) {
         clearTimeout(timeouts[id]);
       }
-      timeouts[id] = setTimeout(function() {
+      timeouts[id] = setTimeout(() => {
         var c = card.classList;
         var newTime = randomNum(timeMin, timeMax) * 15000;
         c.contains("flipped") === true ? c.remove("flipped") : c.add("flipped");
@@ -57,28 +31,24 @@ $(document).ready(function() {
       }, time);
     }
 
-
     // random number generator given min and max
     function randomNum(min, max) {
       return Math.random() * (max - min) + min;
     }
 
-    getInfo();
-
-    $("#submit").click(function (event) {
+    $("#submit").click((event) => {
       event.preventDefault();
       var $search = $("#searchField").val()
       getInfo($search);
     })
   })
 
+  getInfo();
 
-
-$("form").hide();
-
-$("html").mousemove(function(event) {
-  $("form").show();
-
+var form = $("form")
+  form.hide();
+  $("html").mousemove((event) => {
+  form.show();
   myStopFunction();
   myFunction();
 });
@@ -106,23 +76,24 @@ function getInfo(search) {
       }
       for (var i = 0; i < arrayOfNum.length; i++) {
         var imageId = data.data[arrayOfNum[i]].album_musicbrainz_id
+        var popularity = (data.data[arrayOfNum[i]].popularity * 100).toFixed(0)
+        var artist_name = data.data[arrayOfNum[i]].artist_name
+        var title = data.data[arrayOfNum[i]].title
+        var release_year = data.data[arrayOfNum[i]].release_year
         if (imageId) {
           $(`#${i}`).empty()
           $(`#${i}`).append(`<div id="${i}div"></div>`)
           $(`#${i}div`).append(`
-            <p class="hidden aN"> Artist: ${data.data[arrayOfNum[i]].artist_name}</p>
-            <p class="hidden ttl"> Title: ${data.data[arrayOfNum[i]].title}</p>
-            <p class="hidden rls"> Relaesed: ${data.data[arrayOfNum[i]].release_year}</p>
-            <p class="hidden pop"> popularity: ${data.data[arrayOfNum[i]].popularity}</p>`)
+            <p class="hidden aN"> Artist: ${artist_name}</p>
+            <p class="hidden ttl"> Title: ${title}</p>
+            <p class="hidden rls"> Relaesed: ${release_year}</p>
+            <p class="hidden pop"> popularity: ${popularity}%</p>`)
           var imageUrl = siteURL + imageId
           getImage(i, imageUrl);
         }
-          artistName.push(data.data[i].artist_name)
-          albumRelease.push(data.data[i].release_year)
-          albumTitle.push(data.data[i].title)
-        }
-      })
-    }
+      }
+    })
+  }
 
     function getImage(i, imageUrl) {
       $.get(imageUrl).then(function (image) {
@@ -131,7 +102,7 @@ function getInfo(search) {
     }
 
 function myFunction() {
-  myVar = setTimeout(function() {
+  myVar = setTimeout(() => {
     $("form").fadeOut();
   }, 15000);
 }
@@ -142,9 +113,9 @@ function myStopFunction() {
   }
 }
 $(".cardShow").click(function() {
+  var modalAppear = $('#bubbleImage')
   var modalContent = this.innerHTML;
-  $('#bubbleImage').html(modalContent);
+  modalAppear.html(modalContent);
   $('#bubbleImage p.hidden').removeClass('hidden');
   $('#myModal').modal('show')
-
 })
