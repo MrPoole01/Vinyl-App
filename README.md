@@ -9,13 +9,13 @@ The Vinyl app is designed for a vinyl lover and for those who love digging in th
 
 The app randomly selects album records to display by genre. Each tab flips randomly to reveal new albums. Once clicked, Information about the album, artist, release date, and popularity is revealed. Future features will include snippets of the audio on the album, as we as the availability online!
 
-## Code Used
-___
+Link to live site => https://q1-project-dcd85.firebaseapp.com/
 
-• HTML
-• CSS
-• Javascript
-• Jquery
+## Code Used
+-JavaScript
+- jQuery
+- HTML5
+- CSS3
 
 ## Frameworks
 ___
