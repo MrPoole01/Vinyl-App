@@ -12,7 +12,7 @@ The app randomly selects album records to display by genre. Each tab flips rando
 Link to live site => https://q1-project-dcd85.firebaseapp.com/
 
 ## Code Used
--JavaScript
+- JavaScript
 - jQuery
 - HTML5
 - CSS3
