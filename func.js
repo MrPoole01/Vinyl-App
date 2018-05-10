@@ -55,39 +55,48 @@ var form = $("form")
 
 function getInfo(search) {
   if (search === undefined) {
-    url = 'https://cors-anywhere.herokuapp.com/https://itunes.apple.com/search?term=music&primaryGenreName=pop'
+    url = 'https://itunes.apple.com/search?term=music&primaryGenreName=pop'
   } else {
-    url = 'https://cors-anywhere.herokuapp.com/https://itunes.apple.com/search?term=music&primaryGenreName=pop' + '&genre=' + search
+    url = 'https://itunes.apple.com/search?term=music&primaryGenreName=pop' + '&genre=' + search
   }
 
-  $.get(url)
+// function getInfo(search) {
+//   if (search === undefined) {
+//     url = 'https://cors-anywhere.herokuapp.com/https://itunes.apple.com/search?term=music&primaryGenreName=pop'
+//   } else {
+//     url = 'https://cors-anywhere.herokuapp.com/https://itunes.apple.com/search?term=music&primaryGenreName=pop' + '&genre=' + search
+//   }
+
+
+  $.getJSON(url)
     .then(function(data) {
+      console.log(data);
       var count = 0;
       var currentCard = 0;
       var arrayOfNum = [];
       while (count < 16) {
         var randNum = Math.floor(Math.random() * 100)
         if(arrayOfNum.indexOf(randNum) === -1){
-          if(data.data[randNum].album_musicbrainz_id){
+          if(data[randNum]results.artistId){
             arrayOfNum.push(randNum)
             count++
           }
         }
       }
       for (var i = 0; i < arrayOfNum.length; i++) {
-        var imageId = data.data[arrayOfNum[i]].album_musicbrainz_id
-        var popularity = (data.data[arrayOfNum[i]].popularity * 100).toFixed(0)
-        var artist_name = data.data[arrayOfNum[i]].artist_name
-        var title = data.data[arrayOfNum[i]].title
-        var release_year = data.data[arrayOfNum[i]].release_year
+        var imageId = data.results[arrayOfNum[i]].artistId
+        var songs = (data.results[arrayOfNum[i]].trackCount).toFixed(0)
+        var artist_name = data.results[arrayOfNum[i]].artistName
+        var genre = data.results[arrayOfNum[i]].primaryGenreName
+        var release_year = data.results[arrayOfNum[i]].releaseDate
         if (imageId) {
           $(`#${i}`).empty()
           $(`#${i}`).append(`<div id="${i}div"></div>`)
           $(`#${i}div`).append(`
             <p class="hidden aN"> Artist: ${artist_name}</p>
-            <p class="hidden ttl"> Title: ${title}</p>
+            <p class="hidden ttl"> Genre: ${genre}</p>
             <p class="hidden rls"> Relaesed: ${release_year}</p>
-            <p class="hidden pop"> popularity: ${popularity}%</p>`)
+            <p class="hidden pop"> Number of Songs: ${songs}%</p>`)
           var imageUrl = siteURL + imageId
           getImage(i, imageUrl);
         }
@@ -97,7 +106,7 @@ function getInfo(search) {
 
     function getImage(i, imageUrl) {
       $.get(imageUrl).then(function (image) {
-        $(`#${i}`).append(`<img class="album_art" src="${image.images[0].thumbnails.small}">`)
+        $(`#${i}`).append(`<img class="album_art" src="${data.results["0"].artworkUrl100}">`)
       })
     }
 
