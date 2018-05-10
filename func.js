@@ -1,6 +1,6 @@
 // Artist Info
-var siteURL = "https://cors-anywhere.herokuapp.com/http://coverartarchive.org/release-group/";
-
+// var siteURL = "https://cors-anywhere.herokuapp.com/http://coverartarchive.org/release-group/";
+var siteURL = "https://itunes.apple.com/search?term=music&primaryGenreName=pop";
 $(document).ready(function() {
 
     // cache
