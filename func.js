@@ -57,7 +57,7 @@ function getInfo(search) {
   if (search === undefined) {
     url = 'https://cors-anywhere.herokuapp.com/https://itunes.apple.com/search?term=music&primaryGenreName=pop'
   } else {
-    url = 'https://cors-anywhere.herokuapp.com/http://api.musicgraph.com/api/v2/album/search?api_key=63758ec36968c3cf6acd3de1c78e8d84&limit=100' + '&genre=' + search
+    url = 'https://cors-anywhere.herokuapp.com/https://itunes.apple.com/search?term=music&primaryGenreName=pop' + '&genre=' + search
   }
 
   $.get(url)
