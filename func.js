@@ -1,6 +1,6 @@
 // Artist Info
-// var siteURL = "https://cors-anywhere.herokuapp.com/http://coverartarchive.org/release-group/";
-var siteURL = "https://itunes.apple.com/search?term=music&primaryGenreName=pop";
+var siteURL = "http://coverartarchive.org/release-group/";
+// var siteURL = "https://itunes.apple.com/search?term=music&primaryGenreName=pop";
 $(document).ready(function() {
 
     // cache
@@ -60,24 +60,17 @@ function getInfo(search) {
     url = 'https://itunes.apple.com/search?term=music&primaryGenreName=pop' + '&genre=' + search
   }
 
-// function getInfo(search) {
-//   if (search === undefined) {
-//     url = 'https://cors-anywhere.herokuapp.com/https://itunes.apple.com/search?term=music&primaryGenreName=pop'
-//   } else {
-//     url = 'https://cors-anywhere.herokuapp.com/https://itunes.apple.com/search?term=music&primaryGenreName=pop' + '&genre=' + search
-//   }
-
 
   $.getJSON(url)
     .then(function(data) {
-      console.log(data);
+      console.log(data.results);
       var count = 0;
       var currentCard = 0;
       var arrayOfNum = [];
       while (count < 16) {
-        var randNum = Math.floor(Math.random() * 100)
+        var randNum = Math.floor(Math.random() * 50)
         if(arrayOfNum.indexOf(randNum) === -1){
-          if(data[randNum]results.artistId){
+          if(data.results[randNum].artistId){
             arrayOfNum.push(randNum)
             count++
           }
@@ -96,7 +89,7 @@ function getInfo(search) {
             <p class="hidden aN"> Artist: ${artist_name}</p>
             <p class="hidden ttl"> Genre: ${genre}</p>
             <p class="hidden rls"> Relaesed: ${release_year}</p>
-            <p class="hidden pop"> Number of Songs: ${songs}%</p>`)
+            <p class="hidden pop"> Number of Songs: ${songs}</p>`)
           var imageUrl = siteURL + imageId
           getImage(i, imageUrl);
         }
@@ -106,7 +99,8 @@ function getInfo(search) {
 
     function getImage(i, imageUrl) {
       $.get(imageUrl).then(function (image) {
-        $(`#${i}`).append(`<img class="album_art" src="${data.results["0"].artworkUrl100}">`)
+        $(`#${i}`).append(`<img class="album_art" src="${data.results[i].artistId}">`)
+        console.log(data.results.artistId)
       })
     }
 
