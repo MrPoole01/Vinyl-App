@@ -1,5 +1,5 @@
 // Artist Info
-var siteURL = "http://coverartarchive.org/release-group/";
+var siteURL = "http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=cc72c89f9cab5255d244fc09d8465a90";
 // var siteURL = "https://itunes.apple.com/search?term=music&primaryGenreName=pop";
 $(document).ready(function() {
 
