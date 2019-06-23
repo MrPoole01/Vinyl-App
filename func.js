@@ -1,5 +1,5 @@
 // Artist Info
-var siteURL = "http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=cc72c89f9cab5255d244fc09d8465a90";
+var siteURL = "https://api.discogs.com/database/search?q=*&token=GCMVyUOZMChKnIZpxFkFdewqVaaWtmGkwmhCCaPn";
 // var siteURL = "https://itunes.apple.com/search?term=music&primaryGenreName=pop";
 $(document).ready(function() {
 
@@ -55,42 +55,45 @@ var form = $("form")
 
 function getInfo(search) {
   if (search === undefined) {
-    url = 'https://itunes.apple.com/search?term=music&primaryGenreName=pop'
+    var proxy = "https://cors-anywhere.herokuapp.com/";
+    url = `${proxy}https://api.discogs.com/database/search?q=*&token=GCMVyUOZMChKnIZpxFkFdewqVaaWtmGkwmhCCaPn`
   } else {
-    url = 'https://itunes.apple.com/search?term=music&primaryGenreName=pop' + '&genre=' + search
+    url = `${proxy}https://api.discogs.com/database/search?q=*&token=GCMVyUOZMChKnIZpxFkFdewqVaaWtmGkwmhCCaPn` + '&genre=' + search
   }
 
 
   $.getJSON(url)
     .then(function(data) {
-      console.log(data.results);
+      var data = data.results;
       var count = 0;
       var currentCard = 0;
       var arrayOfNum = [];
+      console.log(arrayOfNum);
       while (count < 16) {
         var randNum = Math.floor(Math.random() * 50)
         if(arrayOfNum.indexOf(randNum) === -1){
-          if(data.results[randNum].artistId){
+          if(data[randNum].id){
             arrayOfNum.push(randNum)
             count++
           }
         }
       }
       for (var i = 0; i < arrayOfNum.length; i++) {
-        var imageId = data.results[arrayOfNum[i]].artistId
+        console.log(arrayOfNum.length);
+        var imageId = data.results[arrayOfNum[i]].cover_image;
         var songs = (data.results[arrayOfNum[i]].trackCount).toFixed(0)
-        var artist_name = data.results[arrayOfNum[i]].artistName
-        var genre = data.results[arrayOfNum[i]].primaryGenreName
-        var release_year = data.results[arrayOfNum[i]].releaseDate
+        var artist_name = data.results[arrayOfNum[i]].title
+        var artist_genre = data.results[arrayOfNum[i]].genre
+        var release_year = data.results[arrayOfNum[i]].year
         if (imageId) {
           $(`#${i}`).empty()
           $(`#${i}`).append(`<div id="${i}div"></div>`)
           $(`#${i}div`).append(`
             <p class="hidden aN"> Artist: ${artist_name}</p>
-            <p class="hidden ttl"> Genre: ${genre}</p>
+            <p class="hidden ttl"> Genre: ${artist_genre}</p>
             <p class="hidden rls"> Relaesed: ${release_year}</p>
             <p class="hidden pop"> Number of Songs: ${songs}</p>`)
-          var imageUrl = siteURL + imageId
+          var imageUrl = imageId
           getImage(i, imageUrl);
         }
       }
@@ -99,8 +102,8 @@ function getInfo(search) {
 
     function getImage(i, imageUrl) {
       $.get(imageUrl).then(function (image) {
-        $(`#${i}`).append(`<img class="album_art" src="${data.results[i].artistId}">`)
-        console.log(data.results.artistId)
+        $(`#${i}`).append(`<img class="album_art" src="${data.results[arrayOfNum[i]].id}">`)
+        //console.log(data.artists.image)
       })
     }
 
