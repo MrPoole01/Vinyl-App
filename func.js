@@ -1,6 +1,5 @@
 // Artist Info
 var siteURL = 'https://api.discogs.com/database/search?q=*&token=GCMVyUOZMChKnIZpxFkFdewqVaaWtmGkwmhCCaPn';
-// var siteURL = "https://itunes.apple.com/search?term=music&primaryGenreName=pop";
 $(document).ready(function() {
 
   // cache
@@ -91,7 +90,6 @@ function getInfo(search) {
       var artist_name = data[arrayOfNum[i]].title
       var artist_genre = data[arrayOfNum[i]].genre
       var release_year = data[arrayOfNum[i]].year
-      //console.log(imageId);
       if (imageId) {
         $(`#${i}`).empty()
         $(`#${i}`).append(`<div id="${i}div"></div>`)
@@ -108,8 +106,9 @@ function getInfo(search) {
 
 function getImage(i, imageUrl) {
   $.get(imageUrl).then(function(image) {
+    console.log(imageUrl);
     $(`#${i}`).append(`<img class="album_art" src="${data[arrayOfNum[i]].id}">`)
-    //console.log(data.artists.image)
+    //console.log(image)
   })
 }
 
