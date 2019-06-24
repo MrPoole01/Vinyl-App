@@ -96,7 +96,7 @@ function getInfo(search) {
           <p class="hidden aN"> Artist: ${artist_name}</p>
           <p class="hidden ttl"> Genre: ${artist_genre}</p>
           <p class="hidden rls"> Relaesed: ${release_year}</p>`);
-					var imageUrl = SiteUrl + imageId;
+					var imageUrl = siteURL + imageId;
 					getImage(i, imageUrl);
 				}
 			}
