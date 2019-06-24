@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 // Artist Info
-var siteURL = 'https://api.discogs.com/database/search?q=*&token=GCMVyUOZMChKnIZpxFkFdewqVaaWtmGkwmhCCaPn';
+//var siteURL = 'https://api.discogs.com/database/search?q=*&token=GCMVyUOZMChKnIZpxFkFdewqVaaWtmGkwmhCCaPn';
 $(document).ready(function() {
 
 	// cache
@@ -60,7 +60,7 @@ function getInfo(search) {
 		var proxy = 'https://cors-anywhere.herokuapp.com/';
 		url = `${proxy}https://api.discogs.com/database/search?q=*&token=GCMVyUOZMChKnIZpxFkFdewqVaaWtmGkwmhCCaPn`;
 	} else {
-		url = `${proxy}https://api.discogs.com/database/search?q=*&token=GCMVyUOZMChKnIZpxFkFdewqVaaWtmGkwmhCCaPn` + '&genre=' + search;
+		url = `${proxy}https://api.discogs.com/database/search?q=${search}`;
 	}
 
 
@@ -93,20 +93,20 @@ function getInfo(search) {
 					$(`#${i}`).empty();
 					$(`#${i}`).append(`<div id="${i}div"></div>`);
 					$(`#${i}div`).append(`
-          <p class="hidden aN"> Artist: ${artist_name}</p>
-          <p class="hidden ttl"> Genre: ${artist_genre}</p>
-          <p class="hidden rls"> Relaesed: ${release_year}</p>`);
-					var imageUrl = siteURL + imageId;
+          			<p class="hidden aN"> Artist: ${artist_name}</p>
+          			<p class="hidden ttl"> Genre: ${artist_genre}</p>
+          			<p class="hidden rls"> Relaesed: ${release_year}</p>`);
+					var imageUrl = imageId;
 					getImage(i, imageUrl);
 				}
 			}
 		});
-}
+	}
 
 function getImage(i, imageUrl) {
+	console.log(imageUrl);
 	$.get(imageUrl).then(function(image) {
-		console.log(image);
-		$(`#${i}`).append(`<img class="album_art" src="${data[arrayOfNum[i]].image}">`);
+		$(`#${i}`).append(`<img class="album_art" src="${data[arrayOfNum[i]].id}">`);
 	});
 }
 
