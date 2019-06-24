@@ -106,7 +106,7 @@ function getInfo(search) {
 function getImage(i, imageUrl) {
 	$.get(imageUrl).then(function(image) {
 		console.log(image);
-		$(`#${i}`).append(`<img class="album_art" src="${data[arrayOfNum[i]].id}">`);
+		$(`#${i}`).append(`<img class="album_art" src="${data[arrayOfNum[i]].image}">`);
 	});
 }
 
