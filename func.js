@@ -102,18 +102,10 @@ function getInfo(search) {
 			}
 		});
 	}
-
-	$.ajaxPrefilter( function (options) {
-		if (options.crossDomain && jQuery.support.cors) {
-		  var http = (window.location.protocol === 'http:' ? 'http:' : 'https:');
-		  options.url = http + '//cors.now.sh/' + options.url;
-		  
-		}
-	  });
 	
 	function getImage(i, imageUrl) {
 		if (imageUrl) {
-			//console.log(imageUrl)
+			console.log(imageUrl)
 			$(`#${i}`).append(`<img class="album_art" src="${imageUrl}">`);
 		}
 	}
