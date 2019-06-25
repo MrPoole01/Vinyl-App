@@ -93,7 +93,7 @@ function getInfo(search) {
 					$(`#${i}`).empty();
 					$(`#${i}`).append(`<div id="${i}div"></div>`);
 					$(`#${i}div`).append(`
-					<p class="hidden aN"> Artist: ${artist_name}</p>
+					<p class="hidden aN"> ${artist_name}</p>
 					<p class="hidden ttl"> Genre: ${artist_genre}</p>
 					<p class="hidden rls"> Relaesed: ${release_year}</p>`);
 					var imageUrl = proxy + imageId;
