@@ -60,7 +60,7 @@ function getInfo(search) {
 		//var proxy = 'https://cors-anywhere.herokuapp.com/';
 		url = 'https://api.discogs.com/database/search?q=*&token=uvlwPtQXzCUOtYiPcNFgdZPGGlQxzpcfJKVKPUal';
 	} else {
-		url = `https://api.discogs.com/database/search?q=${search}`;
+		url = `https://api.discogs.com/database/search?q={?${search}}&token=uvlwPtQXzCUOtYiPcNFgdZPGGlQxzpcfJKVKPUal`;
 	}
 
 
