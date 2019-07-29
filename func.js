@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 // Artist Info
-//var siteURL = 'https://api.discogs.com/database/search?q=*&token=GCMVyUOZMChKnIZpxFkFdewqVaaWtmGkwmhCCaPn';
+var siteURL = 'https://api.discogs.com/database/search?q=*&token=uvlwPtQXzCUOtYiPcNFgdZPGGlQxzpcfJKVKPUal';
 $(document).ready(function() {
 
 	// cache
@@ -57,10 +57,10 @@ $('html').mousemove(() => {
 
 function getInfo(search) {
 	if (search === undefined) {
-		var proxy = 'https://cors-anywhere.herokuapp.com/';
-		url = proxy + 'https://api.discogs.com/database/search?q=*&token=GCMVyUOZMChKnIZpxFkFdewqVaaWtmGkwmhCCaPn';
+		//var proxy = 'https://cors-anywhere.herokuapp.com/';
+		url = 'https://api.discogs.com/database/search?q=*&token=uvlwPtQXzCUOtYiPcNFgdZPGGlQxzpcfJKVKPUal';
 	} else {
-		url = proxy + `https://api.discogs.com/database/search?q=${search}`;
+		url = `https://api.discogs.com/database/search?q=${search}`;
 	}
 
 
@@ -84,7 +84,7 @@ function getInfo(search) {
 			}
 			for (var i = 0; i < arrayOfNum.length; i++) {
 				var imageId = data[arrayOfNum[i]].cover_image;
-				//console.log(imageId);
+				console.log(imageId);
 				//var songs = (data[arrayOfNum[i]].trackCount).toFixed(0)
 				var artist_name = data[arrayOfNum[i]].title;
 				var artist_genre = data[arrayOfNum[i]].genre;
@@ -96,7 +96,7 @@ function getInfo(search) {
 					<p class="hidden aN"> ${artist_name}</p>
 					<p class="hidden ttl"> Genre: ${artist_genre}</p>
 					<p class="hidden rls"> Relaesed: ${release_year}</p>`);
-					var imageUrl = proxy + imageId;
+					var imageUrl = imageId;
 					getImage(i, imageUrl);
 				}
 			}
@@ -105,7 +105,7 @@ function getInfo(search) {
 	
 	function getImage(i, imageUrl) {
 		if (imageUrl) {
-			console.log(imageUrl)
+			//console.log(imageUrl)
 			$(`#${i}`).append(`<img class="album_art" src="${imageUrl}">`);
 		}
 	}
