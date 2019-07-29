@@ -69,7 +69,6 @@ function getInfo(search) {
 			var data = info.results;
 			var count = 0;
 			var arrayOfNum = [];
-			//console.log(arrayOfNum);
 			while (count < 16) {
 				var randNum = Math.floor(Math.random() * 50);
 				if (arrayOfNum.indexOf(randNum) === -1) {
@@ -84,7 +83,6 @@ function getInfo(search) {
 			}
 			for (var i = 0; i < arrayOfNum.length; i++) {
 				var imageId = data[arrayOfNum[i]].cover_image;
-				console.log(imageId);
 				//var songs = (data[arrayOfNum[i]].trackCount).toFixed(0)
 				var artist_name = data[arrayOfNum[i]].title;
 				var artist_genre = data[arrayOfNum[i]].genre;
@@ -105,7 +103,6 @@ function getInfo(search) {
 	
 	function getImage(i, imageUrl) {
 		if (imageUrl) {
-			//console.log(imageUrl)
 			$(`#${i}`).append(`<img class="album_art" src="${imageUrl}">`);
 		}
 	}
