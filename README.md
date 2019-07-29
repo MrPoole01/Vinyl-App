@@ -9,7 +9,7 @@ The Vinyl app is designed for a vinyl lover and for those who love digging in th
 
 The app randomly selects albums from the MusicBrainz API to display by genre. Each tab flips randomly to reveal new albums. Once clicked, Information about the album, artist, release date, and popularity is revealed. Future features will include snippets of the audio on the albums, and where to purchase online!
 
-Link to live site => https://q1-project-dcd85.web.app/
+Link to live site => q1-project-dcd85.firebaseapp.com
 
 ## Code Used
 - JavaScript
